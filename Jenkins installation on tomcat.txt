@@ -1,0 +1,54 @@
+---Jenkins installation on tomcat as war file deploy 
+
+Steps:
+1. install java 11 or supportive version
+2. create a folder in mnt (server)
+3. go to server download zip file of tomcat server from 
+( https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.79/bin/apache-tomcat-9.0.79.zip)
+4. unzip server and give permission fron server and remove zip file
+5. In tomcat path go to webapps, download war file 
+link: wget https://get.jenkins.io/war-stable/latest/jenkins.war
+6. from tomcat server go to bin folder --> run command ./startup.sh -- to start tomcat server 
+7. started using catalina.opt
+8. go to logs folder in tomcat only and open catalina.out --> u can see logs also password here to login jenkins
+9. edit inbound rule of SG custome TCP 8080 anywhere
+10. execute--> privateip:8080/jenkins/
+11. jenkins home -- /root/.jenkins (hidden folder inside root -- ls -ltra)
+
+
+---commands
+sudo su
+cd
+amazon-linux-extras install java-openjdk11
+java --version
+cd /mnt
+mkdir server
+cd server
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.79/bin/apache-tomcat-9.0.79.zip
+unzip apache-tomcat-9.0.79.zip
+cd /mnt/server
+chmod -R 777 apache-tomcat-9.0.79.zip
+ls -ltr
+rm -rf apache-tomcat-9.0.79.zip
+cd apache-tomcat-9.0.79
+ls -ltr
+cd webapps
+ls -ltr
+wget https://get.jenkins.io/war-stable/latest/jenkins.war
+ls -ltr
+cd bin
+./startup.sh
+cd ../logs   
+ls -ltr
+cat catalina.out
+cd /
+cd /root
+/root/.jenkins
+ls -ltra
+cd .jenkins
+ls -ltr
+cd
+history
+
+   
+
